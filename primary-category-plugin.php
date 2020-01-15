@@ -23,4 +23,8 @@ define( 'PRIMARY_CATEGORY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 /**
  * The core plugin class
  */
-require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/class.primary-category-plugin.php';
+require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/class-primary-category-plugin.php';
+
+if ( is_admin() ) {
+	require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'admin/class-primary-category-plugin-admin.php';
+}

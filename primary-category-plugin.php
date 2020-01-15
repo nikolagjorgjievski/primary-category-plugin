@@ -23,4 +23,4 @@ define( 'PRIMARY_CATEGORY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 /**
  * The core plugin class
  */
-require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/class-primary-category.php';
+require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/class.primary-category-plugin.php';

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Primary_Category_Plugin
+ * @package PrimaryCategoryPlugin
  */
 /*
 Plugin Name: Primary Category Plugin
@@ -18,30 +18,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     die;
 }
 
-function primary_category_register_meta() {
-	register_meta(
-		'post',
-		'_primary_category_id',
-		array(
-			'show_in_rest' => true,
-			'type' => 'integer',
-			'single' => true,
-			'sanitize_callback' => 'sanitize_text_field',
-			'auth_callback' => function() {
-				return current_user_can( 'edit_posts' );
-			},
-		)
-	);
-}
-add_action( 'init', 'primary_category_register_meta' );
+define( 'PRIMARY_CATEGORY_PLUGIN_VERSION', '0.1.0' );
+define( 'PRIMARY_CATEGORY_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'PRIMARY_CATEGORY_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
-if ( is_admin() ) {
-	function primary_category_plugin_enqueue_assets() {
-		wp_enqueue_script(
-			'primary_category_plugin_js',
-			plugins_url( 'build/index.js', __FILE__ ),
-			array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components', 'wp-data' )
-		);
-	}
-	add_action( 'enqueue_block_editor_assets', 'primary_category_plugin_enqueue_assets' );
-}
+require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/core.php';
+
+require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/classes/class-primary-category-frontend.php';
+require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/frontend-wrappers.php';
+

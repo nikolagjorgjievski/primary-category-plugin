@@ -27,3 +27,22 @@ require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/core.php';
 require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/classes/class-primary-category-frontend.php';
 require_once PRIMARY_CATEGORY_PLUGIN_DIR . 'includes/frontend-wrappers.php';
 
+function create_posttype() {
+
+	register_post_type( 'movies',
+		// CPT Options
+		array(
+			'labels' => array(
+				'name' => __( 'Movies' ),
+				'singular_name' => __( 'Movie' )
+			),
+			'public' => true,
+			'has_archive' => true,
+			'rewrite' => array('slug' => 'movies'),
+			'show_in_rest' => true,
+			'supports' => array('editor'),
+		)
+	);
+}
+// Hooking up our function to theme setup
+add_action( 'init', 'create_posttype' );

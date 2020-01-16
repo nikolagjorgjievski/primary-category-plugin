@@ -30,8 +30,13 @@ PrimaryCategoryMetaFields = withSelect(
 			orderby: 'name',
 			status: 'publish'
 		};
+		const postMeta = select('core/editor').getEditedPostAttribute('meta');
+		let selectedPrimaryCategoryId = undefined;
+		if (postMeta) {
+			selectedPrimaryCategoryId = postMeta['_primary_category_id'];
+		}
 		return {
-			selectedPrimaryCategoryId: select('core/editor').getEditedPostAttribute('meta')['_primary_category_id'],
+			selectedPrimaryCategoryId: selectedPrimaryCategoryId,
 			categories: select('core').getEntityRecords('taxonomy', 'category', categoriesArgs)
 		}
 	}

@@ -1,3 +1,8 @@
+
+# ignore build data
+build/*.map
+build/*.json
+
 # ignore node dependency directories
 node_modules
 package-lock.json
